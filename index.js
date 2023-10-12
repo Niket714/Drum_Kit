@@ -17,28 +17,28 @@
 // aud.play();
 
 
-var arr = document.querySelectorAll(".drum");
+// var arr = document.querySelectorAll(".drum");
 
-for(var i=0 ; i< arr.length ; i++){
-    arr[i].addEventListener("click" , function (){
-        var buttoninnerHtml = this.innerHTML;
-        // this.style.color = "white";
-        soundplay(buttoninnerHtml);
-        buttonAnimation(buttoninnerHtml);
-    });
-}                                               
+// for(var i=0 ; i< arr.length ; i++){
+//     arr[i].addEventListener("click" , function (){
+//         var buttoninnerHtml = this.innerHTML;
+//         // this.style.color = "white";
+//         soundplay(buttoninnerHtml);
+//         buttonAnimation(buttoninnerHtml);
+//     });
+// }                                               
 
-// eventlistner for clicking any key on the keyboard 
-// and the whole webpage should listen to the pressing of any key so we 
-// should associated it with the whole document
-document.addEventListener("keydown", function (event){
-    // alert("key is pressed");
-    // console.log(event);
-    // console.log(event.key);
-    var  word = event.key;
-    soundplay(word);
-    buttonAnimation(word);
-});
+// // eventlistner for clicking any key on the keyboard 
+// // and the whole webpage should listen to the pressing of any key so we 
+// // should associated it with the whole document
+// document.addEventListener("keydown", function (event){
+//     // alert("key is pressed");
+//     // console.log(event);
+//     // console.log(event.key);
+//     var  word = event.key;
+//     soundplay(word);
+//     buttonAnimation(word);
+// });
 
 function soundplay(char){
     var aud;
@@ -66,11 +66,33 @@ function soundplay(char){
 }
 
 
+// function buttonAnimation(currentKey){
+//     var activebutton = document.querySelector("." + currentKey);
+//     activebutton.classList.add("pressed");
+
+//     setTimeout(function(){
+//         activebutton.classList.remove("pressed");
+//     } , 100);
+// }
+
+
+
+$(".drum").click (function (){
+    var buttoninnerHtml = this.innerHTML;
+    soundplay(buttoninnerHtml);
+    buttonAnimation(buttoninnerHtml);
+});
+
+$(document).keypress( function (event){
+    var  word = event.key;
+    soundplay(word);
+    buttonAnimation(word);
+});
+
 function buttonAnimation(currentKey){
-    var activebutton = document.querySelector("." + currentKey);
-    activebutton.classList.add("pressed");
+    $("." + currentKey).addClass("pressed");
 
     setTimeout(function(){
-        activebutton.classList.remove("pressed");
+        $("." + currentKey).removeClass("pressed");
     } , 100);
 }
